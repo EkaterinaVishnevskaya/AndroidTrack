@@ -35,6 +35,7 @@ class MainActivity : AppCompatActivity() {
             } else
             {
                 f = true
+                i = 0
                 btn.setText(getString(R.string.start))
                 timer.cancel()
             }

@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         val txt = findViewById(R.id.textView) as TextView
         var f = true
         var i = 0
-        var timer = object : CountDownTimer(2000, 1000) {
+        var timer = object : CountDownTimer(1000000, 1000) {
             override fun onFinish() {
                 f = true
                 btn.setText(getString(R.string.start))

@@ -8,24 +8,28 @@ import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
+    override fun onBackPressed() {
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val btn = findViewById(R.id.button) as Button
-        val txt = findViewById(R.id.textView) as TextView
+        val btn = findViewById<Button>(R.id.button)
+        val txt = findViewById<TextView>(R.id.textView)
         var f = true
-        var i = 0
-        val x = 1000 as Long
-        var timer = object : CountDownTimer(1000*x, x) {
+        var i : Int
+        val secinmillis = 1000.toLong()
+        val x= 1000.toLong()
+        val timer = object : CountDownTimer(x*secinmillis, secinmillis) {
             override fun onFinish() {
                 f = true
-                btn.setText(getString(R.string.start))
+                btn.text = getString(R.string.start)
                 i = 0
             }
 
             override fun onTick(millisUntilFinished: Long) {
-                i++
-                txt.setText(i.toString()) //TODO function int -> string
+                i = (x-millisUntilFinished/secinmillis).toInt()
+                txt.text = NumToStr.convert(i)
             }
         }
         btn.setOnClickListener {
@@ -36,7 +40,6 @@ class MainActivity : AppCompatActivity() {
             } else
             {
                 f = true
-                i = 0
                 btn.setText(getString(R.string.start))
                 timer.cancel()
             }
